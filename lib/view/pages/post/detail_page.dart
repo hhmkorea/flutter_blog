@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/pages/post/home_page.dart';
-import 'package:flutter_blog/pages/post/update_page.dart';
+import 'package:flutter_blog/view/pages/post/home_page.dart';
+import 'package:flutter_blog/view/pages/post/update_page.dart';
 import 'package:get/get.dart';
 
 class DetailPage extends StatelessWidget {

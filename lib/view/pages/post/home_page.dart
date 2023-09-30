@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blog/pages/post/detail_page.dart';
-import 'package:flutter_blog/pages/post/write_page.dart';
-import 'package:flutter_blog/pages/user/login_page.dart';
-import 'package:flutter_blog/pages/user/user_info.dart';
 import 'package:flutter_blog/size.dart';
+import 'package:flutter_blog/view/pages/post/detail_page.dart';
+import 'package:flutter_blog/view/pages/post/write_page.dart';
+import 'package:flutter_blog/view/pages/user/login_page.dart';
+import 'package:flutter_blog/view/pages/user/user_info.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {

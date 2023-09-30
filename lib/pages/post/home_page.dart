@@ -56,6 +56,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              Divider(),
               TextButton(
                 onPressed: (){
                   Get.to(UserInfo());

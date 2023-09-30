@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // 라우트 설계는 차후 GetX 라이브러리로 사용
-      home: JoinPage(),
+      home: HomePage(),
     );
   }
 }

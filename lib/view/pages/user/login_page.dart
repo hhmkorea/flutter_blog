@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/controller/user_controller.dart';
+import 'package:flutter_blog/domain/user/user_repository.dart';
 import 'package:flutter_blog/util/validator_util.dart';
 import 'package:flutter_blog/view/components/custom_elevated_button.dart';
 import 'package:flutter_blog/view/components/custom_text_form_field.dart';
@@ -8,6 +10,7 @@ import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  UserController u = Get.put(UserController()); // 상태관리
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +54,8 @@ class LoginPage extends StatelessWidget {
             text: "로그인",
             funPageRoute: () {
               if(_formKey.currentState!.validate()) {
-                Get.to(HomePage());
+                //Get.to(HomePage());
+                u.login("ssar", "1234");
               }
             },
           ),

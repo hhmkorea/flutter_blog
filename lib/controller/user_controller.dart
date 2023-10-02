@@ -6,9 +6,13 @@ class UserController extends GetxController {
 
   final UserRepository _userRepository = UserRepository();
 
-  Future<void> login(String username, String password) async {
+  Future<String> login(String username, String password) async {
     String token = await _userRepository.login(username, password);
-    jwtToken = token;
-    print("jwtToken : $jwtToken");
+
+    if(token != "-1") {
+      jwtToken = token;
+      print("jwtToken : $jwtToken");
+    }
+    return token;
   }
 }

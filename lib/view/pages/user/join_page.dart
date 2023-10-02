@@ -55,13 +55,13 @@ class JoinPage extends StatelessWidget {
             text: "회원가입",
             funPageRoute: () {
               if(_formKey.currentState!.validate()) {
-                Get.to(LoginPage());
+                Get.to(() => LoginPage());
               }
           },
         ),
         TextButton(
           onPressed: () {
-            Get.to(LoginPage());
+            Get.to(() => LoginPage());
           },
           child: Text("로그인 페이지로 이동"),
         ),

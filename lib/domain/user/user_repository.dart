@@ -11,7 +11,12 @@ class UserRepository {
     print(loginReqDto.toJson());
     Response response = await _userProvider.login(loginReqDto.toJson()); // data를 Map 타입으로 await로 기다림.
     dynamic headers = response.headers;
-    String token = headers["authorization"];
-    return token;
+
+    if(headers["authorization"] == null) {
+      return "-1";
+    } else {
+       String token = headers["authorization"];
+      return token;
+    }
   }
 }

@@ -4,15 +4,23 @@ class CustomTextFormField extends StatelessWidget {
   final String hint;
   final funValidator;
   final String? value;
+  final controller;
 
-  const CustomTextFormField({super.key, required this.hint, required this.funValidator, this.value});
+  const CustomTextFormField({
+    super.key,
+    required this.hint,
+    required this.funValidator,
+    this.value,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
-        initialValue: value ?? "",
+        controller: controller,
+        initialValue: value , // "" 공백 넣으면 에러남.
         validator: funValidator,
         obscureText: hint == "Password" ? true : false,
         decoration: InputDecoration(

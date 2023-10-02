@@ -5,7 +5,7 @@ import 'package:flutter_blog/util/convert_utf8.dart';
 import 'package:get/get.dart';
 
 // 통신을 호출해서 응답되는 데이터를 예쁘게 가공! => json => Dart 오브젝트
-/*
+
 class PostRepository {
   final PostProvider _postProvider = PostProvider();
 
@@ -13,9 +13,10 @@ class PostRepository {
     Response response = await _postProvider
         .findAll(); // data를 Map 타입으로 await로 기다림.
     dynamic body = response.body;
-    //print(body);
+    print(body);
   }
-}*/
+}
+/*
 
 // 에러나서 주석처리, 그냥 UTF-8 잘됨.
 class PostRepository {
@@ -42,3 +43,4 @@ class PostRepository {
     }
   }
 }
+*/

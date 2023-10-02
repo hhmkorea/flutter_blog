@@ -1,3 +1,4 @@
+/*
 import 'dart:convert';
 
 dynamic convertUtf8ToObject(dynamic body) {
@@ -6,4 +7,4 @@ dynamic convertUtf8ToObject(dynamic body) {
   String responseBody = jsonEncode(body); // json 데이터로 변경
   dynamic converBody = jsonDecode(utf8.decode(responseBody.codeUnits));
   return converBody;
-}
+}*/

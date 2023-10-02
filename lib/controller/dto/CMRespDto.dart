@@ -1,3 +1,4 @@
+/*
 // 에러나서 주석처리, 그냥 UTF-8 잘됨.
 
 
@@ -19,3 +20,4 @@ class CMRespDto {
         msg = json["msg"],
         data = json["data"];
 }
+*/

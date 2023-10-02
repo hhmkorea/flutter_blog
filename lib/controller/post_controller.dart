@@ -7,7 +7,10 @@ class PostController extends GetxController {
   final PostRepository _postRepository = PostRepository();
   final posts = <Post>[].obs;
 
-  // alt + Insert > Overrride Method > onInit()
+  void findAll() {
+    _postRepository.findAll();
+  }
+/*  // alt + Insert > Overrride Method > onInit()
   @override
   void onInit() {
     super.onInit();
@@ -18,5 +21,5 @@ class PostController extends GetxController {
   Future<void> findAll() async {
     List<Post> posts = await _postRepository.findAll();
     this.posts.value = posts;
-  }
+  }*/
 }

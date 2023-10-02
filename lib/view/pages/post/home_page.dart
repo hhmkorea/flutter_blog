@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
       [GETX] Instance "PostController" has been initialized    */
 
     PostController p = Get.put(PostController());
-    //p.findAll();
+    p.findAll();
 
     return Scaffold(
       drawer: _navigation(context),  // default로 뒤로가기 버튼 있음, 메뉴 draw로 넣음
@@ -36,21 +36,37 @@ class HomePage extends StatelessWidget {
            Obx() : 컨트롤러 상태가 변경이 되면 자동으로 업데이트 됨.
         */
       ),
-      body: Obx(() => ListView.separated(
-        itemCount: p.posts.length,
+      body: ListView.separated(
+        itemCount: 20, // p.posts.length,
         itemBuilder: (context, index) {
           return ListTile(
             onTap: () {
               Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
             },
-            title: Text("${p.posts[index].title}"),
-            leading: Text("${p.posts[index].id}"),
+            title: Text("제목"),// Text("${p.posts[index].title}"),
+            leading: Text("1"),// Text("${p.posts[index].id}"),
           );
         },
         separatorBuilder: (context, index) {
           return Divider();
         },
-      )),
+      /*
+      body: Obx(() => ListView.separated(
+        itemCount: 20, // p.posts.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            onTap: () {
+              Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
+            },
+            title: Text("제목"),// Text("${p.posts[index].title}"),
+            leading: Text("1"),// Text("${p.posts[index].id}"),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return Divider();
+        },
+      ),*/
+      ),
     );
   }
 

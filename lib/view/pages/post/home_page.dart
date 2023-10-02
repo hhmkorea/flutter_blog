@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/controller/post_controller.dart';
 import 'package:flutter_blog/controller/user_controller.dart';
+import 'package:flutter_blog/domain/post/post.dart';
 import 'package:flutter_blog/size.dart';
 import 'package:flutter_blog/util/jwt.dart';
 import 'package:flutter_blog/view/pages/post/detail_page.dart';
@@ -13,9 +15,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // put : 없으면 만들고, 있으면 찾기!!
     // find : 있는거 찾기!!
     UserController u = Get.find();
+    // put : 없으면 만들고, 있으면 찾기!!,
+    /* 객체생성(create), onInit()함수 실행(initialize)
+      [GETX] Instance "PostController" has been created
+      [GETX] Instance "PostController" has been initialized    */
+
+    PostController p = Get.put(PostController());
+    //p.findAll();
 
     return Scaffold(
       drawer: _navigation(context),  // default로 뒤로가기 버튼 있음, 메뉴 draw로 넣음
@@ -28,21 +36,21 @@ class HomePage extends StatelessWidget {
            Obx() : 컨트롤러 상태가 변경이 되면 자동으로 업데이트 됨.
         */
       ),
-      body: ListView.separated(
-        itemCount: 20,
+      body: Obx(() => ListView.separated(
+        itemCount: p.posts.length,
         itemBuilder: (context, index) {
           return ListTile(
             onTap: () {
               Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
             },
-            title: Text("제목1"),
-            leading: Text("1"),
+            title: Text("${p.posts[index].title}"),
+            leading: Text("${p.posts[index].id}"),
           );
         },
         separatorBuilder: (context, index) {
           return Divider();
         },
-      ),
+      )),
     );
   }
 

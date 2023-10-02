@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
               alignment: Alignment.center,
               height: 200,
               child: Text(
-                "로그인 페이지",
+                "로그인 페이지 ${u.isLogin}",
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,

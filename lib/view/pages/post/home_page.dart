@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_blog/controller/user_controller.dart';
 import 'package:flutter_blog/size.dart';
+import 'package:flutter_blog/util/jwt.dart';
 import 'package:flutter_blog/view/pages/post/detail_page.dart';
 import 'package:flutter_blog/view/pages/post/write_page.dart';
 import 'package:flutter_blog/view/pages/user/login_page.dart';
@@ -11,9 +13,21 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // put : 없으면 만들고, 있으면 찾기!!
+    // find : 있는거 찾기!!
+    UserController u = Get.find();
+
     return Scaffold(
       drawer: _navigation(context),  // default로 뒤로가기 버튼 있음, 메뉴 draw로 넣음
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("${u.isLogin}"),
+        /*
+        1. user_controller.dart : final RxBool isLogin = false.obs;
+        2. title: Obx(() => Text("${u.isLogin}")),
+           앱바에 로그인되면 true 출력함.
+           Obx() : 컨트롤러 상태가 변경이 되면 자동으로 업데이트 됨.
+        */
+      ),
       body: ListView.separated(
         itemCount: 20,
         itemBuilder: (context, index) {
@@ -33,6 +47,8 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _navigation(BuildContext context) {
+    UserController u = Get.find();
+
     return Container(
       width: getDrawerWidth(context),
       height: double.infinity,
@@ -45,7 +61,7 @@ class HomePage extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: (){
-                  Get.to(WritePage());
+                  Get.to(() => WritePage());
                 },
                 child: Text(
                   "글쓰기",
@@ -59,7 +75,7 @@ class HomePage extends StatelessWidget {
               Divider(),
               TextButton(
                 onPressed: (){
-                  Get.to(UserInfo());
+                  Get.to(() => UserInfo());
                 },
                 child: Text(
                   "회원정보보기",
@@ -73,7 +89,8 @@ class HomePage extends StatelessWidget {
               Divider(),
               TextButton(
                 onPressed: (){
-                  Get.to(LoginPage());
+                  u.logout();
+                  Get.to(() => LoginPage());
                 },
                 child: Text(
                   "로그아웃",

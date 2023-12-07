@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
     p.findAll();
 
     return Scaffold(
-      drawer: _navigation(context),  // default로 뒤로가기 버튼 있음, 메뉴 draw로 넣음
+      drawer: _navigation(context),  // 왼쪽 메뉴 draw로 넣음
       appBar: AppBar(
         title: Text("${u.isLogin}"),
         /*
@@ -36,45 +36,29 @@ class HomePage extends StatelessWidget {
            Obx() : 컨트롤러 상태가 변경이 되면 자동으로 업데이트 됨.
         */
       ),
-      body: ListView.separated(
-        itemCount: 20, // p.posts.length,
+      body: ListView.separated( // 분리선 있는 리스트
+        itemCount: 20,
         itemBuilder: (context, index) {
           return ListTile(
             onTap: () {
-              Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
+              Get.to(DetailPage(index), arguments: "arguments 속성 테스트"); // 클릭하면 상세 페이지로
             },
-            title: Text("제목"),// Text("${p.posts[index].title}"),
-            leading: Text("1"),// Text("${p.posts[index].id}"),
+            title: Text("제목"),
+            leading: Text("1"),
           );
         },
         separatorBuilder: (context, index) {
           return Divider();
         },
-      /*
-      body: Obx(() => ListView.separated(
-        itemCount: 20, // p.posts.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            onTap: () {
-              Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
-            },
-            title: Text("제목"),// Text("${p.posts[index].title}"),
-            leading: Text("1"),// Text("${p.posts[index].id}"),
-          );
-        },
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
-      ),*/
       ),
     );
   }
 
-  Widget _navigation(BuildContext context) {
+  Widget _navigation(BuildContext context) { // 왼쪽 메뉴 부분
     UserController u = Get.find();
 
     return Container(
-      width: getDrawerWidth(context),
+      width: getDrawerWidth(context), // 뒤로가기 버튼 대신 드로우 메뉴 넣음.
       height: double.infinity,
       color: Colors.white,
       child: SafeArea(
@@ -85,44 +69,32 @@ class HomePage extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: (){
-                  Get.to(() => WritePage());
+                  Get.to(() => WritePage()); // 글쓰기
                 },
                 child: Text(
                   "글쓰기",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
+                  style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54 )
                 ),
               ),
-              Divider(),
+              Divider(), // 분리선 넣음
               TextButton(
                 onPressed: (){
-                  Get.to(() => UserInfo());
+                  Get.to(() => UserInfo()); // 회원정보 보기
                 },
                 child: Text(
                   "회원정보보기",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
+                  style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54 ),
                 ),
               ),
               Divider(),
               TextButton(
                 onPressed: (){
                   u.logout();
-                  Get.to(() => LoginPage());
+                  Get.to(() => LoginPage()); // 로그아웃
                 },
                 child: Text(
                   "로그아웃",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
+                  style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54 ),
                 ),
               ),
               Divider(),

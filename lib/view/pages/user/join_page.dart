@@ -7,13 +7,13 @@ import 'package:get/get.dart';
 import 'package:validators/validators.dart';
 
 class JoinPage extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>(); // 폼 상태 관리하는 글로벌 키
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0), // 상하좌우 여백 주기
         child: ListView( // 키보드 스크롤 뷰 가능하게 ListView로 만듬.
           children: [
             Container(
@@ -21,13 +21,10 @@ class JoinPage extends StatelessWidget {
               height: 200,
               child: Text(
                 "회원가입 페이지",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle( fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            _joinForm(),
+            _joinForm(), // 유효성 검사할 값을 Form에 모아둠.
           ],
         ),
       ),
@@ -35,13 +32,13 @@ class JoinPage extends StatelessWidget {
   }
 
   Widget _joinForm() { // 최상위 Widget 클래스로 지정해야 오류가 덜남.
-    return Form( // validation 체크할때 넣어서 하는게 좋음.
-      key: _formKey,
+    return Form( // Form : spring server에 validation 체크할 값을 한꺼번에 넣기에 좋음.
+      key: _formKey, // _formKey : 폼 내부를 어디서든 관리할 수 있는 키.
       child: Column(
         children: [
-          CustomTextFormField(
+          CustomTextFormField( // 공통 : 텍스트 입력란
             hint: "Username",
-            funValidator: validateUsername(),
+            funValidator: validateUsername(), // 공통 : 유효성 검사
           ),
           CustomTextFormField(
             hint: "Password",
@@ -51,17 +48,17 @@ class JoinPage extends StatelessWidget {
             hint: "Email",
             funValidator: validateEmail(),
           ),
-          CustomElevatedButton(
+          CustomElevatedButton( // 공통 : 버튼 스타일
             text: "회원가입",
-            funPageRoute: () {
-              if(_formKey.currentState!.validate()) {
+            funPageRoute: () {  // funPageRoute 페이지 이동 라우터
+              if(_formKey.currentState!.validate()) { // 유효성 검사 다 끝나면 페이지 이동
                 Get.to(() => LoginPage());
               }
           },
         ),
         TextButton(
           onPressed: () {
-            Get.to(() => LoginPage());
+            Get.to(() => LoginPage()); // Get.to를 이용해서 로그인 페이지로 이동.
           },
           child: Text("로그인 페이지로 이동"),
         ),

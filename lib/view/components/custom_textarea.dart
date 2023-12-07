@@ -5,16 +5,16 @@ class CustomTextArea extends StatelessWidget {
   final funValidator;
   final String? value;
 
-  const CustomTextArea({super.key, required this.hint, required this.funValidator, this.value});
+  const CustomTextArea({required this.hint, required this.funValidator, this.value});
 
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      child: TextFormField(
+      child: TextFormField( // 내용 넣는 영역
         initialValue: value ?? "",
-        maxLines: 10,
+        maxLines: 10, // 최대 입력하는 줄 개수, 영역 높이
         validator: funValidator,
         decoration: InputDecoration(
           hintText: "Enter $hint", // null 안정성을 위해 변수를 이렇게 지정.

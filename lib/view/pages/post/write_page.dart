@@ -15,19 +15,19 @@ class WritePage extends StatelessWidget {
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Form(
+        child: Form( // Form : 유효성 검사, Form안의 값을 서버에 넘겨줌.
           key: _formKey,
-          child: ListView(
+          child: ListView( // ListView : 스크롤 지원
             children: [
-              CustomTextFormField(
+              CustomTextFormField( // 공통 : 제목 영역
                 hint: "Title",
                 funValidator: validateTitle(),
               ),
-              CustomTextArea(
+              CustomTextArea( // 공통 : 내용 영역
                 hint: "Content",
                 funValidator: validateContent(),
               ),
-              CustomElevatedButton(
+              CustomElevatedButton( // 공통 : 버튼 영역
                 text: "글쓰기",
                 funPageRoute: () {
                   if(_formKey.currentState!.validate()) {

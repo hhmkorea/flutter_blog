@@ -26,10 +26,7 @@ class LoginPage extends StatelessWidget {
               height: 200,
               child: Text(
                 "로그인 페이지 ${u.isLogin}",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle( fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
             _loginForm(),
@@ -56,8 +53,8 @@ class LoginPage extends StatelessWidget {
           ),
           CustomElevatedButton(
             text: "로그인",
-            funPageRoute: () async {
-              if(_formKey.currentState!.validate()) {
+            funPageRoute: () async { // funPageRoute 페이지 이동 라우터
+              if(_formKey.currentState!.validate()) { // _formKey 현재 상태는 절대 null이 아님.
                 //u.login("ssar", "1234");
                 String token = await u.login(_username.text.trim(), _password.text.trim());
                 if(token != "-1") {

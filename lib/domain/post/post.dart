@@ -21,7 +21,7 @@ class Post {
   // 통신을 위해서 json 처럼 생긴 문자열 {"id":1} => Dart 오브젝트
 
   Post.fromJson(Map<String, dynamic> json)
-      : id = json["id"], // 이니셜 라이즈드 연산자
+      : id = json["id"],                // 이니셜 라이즈드 연산자!!
         title = json["title"],
         content = json["content"],
         user = User.fromJson(json["user"]),

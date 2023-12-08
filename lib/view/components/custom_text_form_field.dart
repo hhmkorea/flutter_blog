@@ -19,7 +19,7 @@ class CustomTextFormField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5), // 아래 위로 공백 지정
       child: TextFormField(
         controller: controller,
-        initialValue: value , // "" 공백 넣으면 에러남.
+        initialValue: value , // "" 공백 넣으면 에러남. 초기값
         validator: funValidator,
         obscureText: hint == "Password" ? true : false, // 패스워드면 *로 가려서 보여줌.
         decoration: InputDecoration(

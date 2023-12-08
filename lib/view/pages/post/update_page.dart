@@ -21,12 +21,12 @@ class UpdatePage extends StatelessWidget {
               CustomTextFormField(
                 hint: "Title",
                 funValidator: validateTitle(),
-                value: "제목1~" * 2,
+                value: "제목1~" * 2, // 테스트용 데이타 넣어줌.
               ),
               CustomTextArea(
                 hint: "Content",
                 funValidator: validateContent(),
-                value: "내용1~" * 20,
+                value: "내용1~" * 20, // 테스트용 데이타 넣어줌
               ),
               // homepage -> detailpage -> updatepage
               CustomElevatedButton(

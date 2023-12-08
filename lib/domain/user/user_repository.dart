@@ -8,8 +8,13 @@ class UserRepository {
 
   Future<String> login(String username, String password) async {
     LoginReqDto loginReqDto = LoginReqDto(username, password); // loginReqDto : dart request object
-    print(loginReqDto.toJson());
-    Response response = await _userProvider.login(loginReqDto.toJson()); // data를 Map 타입으로 await로 기다림.
+
+    print(loginReqDto.toJson()); // 로그인한 유저 id, pwd 응답 결과값 로그로 뿌려줌.
+
+    Response response = await _userProvider.login(loginReqDto.toJson());
+    // data를 Map 타입으로 await로 기다림.
+    // async를 반드시 지정해야함.
+    // user_provider에서 Future를 통해 null 먼저 던져주니 await로 기다려!!라고 지정하고 응답결과 가져온거 뿌림.
     dynamic headers = response.headers;
 
     if(headers["authorization"] == null) {

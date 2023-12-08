@@ -55,7 +55,7 @@ class LoginPage extends StatelessWidget {
             text: "로그인",
             funPageRoute: () async { // funPageRoute 페이지 이동 라우터
               if(_formKey.currentState!.validate()) { // _formKey 현재 상태는 절대 null이 아님.
-                //u.login("ssar", "1234");
+                //u.login("ssar", "1234"); ------------------------- // 데스트용 로그인 데이타!!!
                 String token = await u.login(_username.text.trim(), _password.text.trim());
                 if(token != "-1") {
                   //print("토큰 정상적으로 받음");

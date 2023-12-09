@@ -16,11 +16,15 @@ class PostRepository {
     // CMRespDto cmRespDto = CMRespDto.fromJson(convertBody);
     // -----------------------------------------------------------------------
     CMRespDto cmRespDto = CMRespDto.fromJson(body);
-    print(cmRespDto.code);
-    print(cmRespDto.msg);
-    print(cmRespDto.data.runtimeType);
+    //print(cmRespDto.code);
+    //print(cmRespDto.msg);
+    //print(cmRespDto.data.runtimeType);
 
     if (cmRespDto.code == 1) {
+      List<dynamic> temp = cmRespDto.data;
+      List<Post> posts = temp.map((post) => Post.fromJson(post)).toList();
+      print(posts.length);
+      print(posts[0].title);
     } else {
     }
   }

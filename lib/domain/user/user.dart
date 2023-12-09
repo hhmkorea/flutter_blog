@@ -21,7 +21,9 @@ class User {
     : id = json["id"],                  // 이니셜 라이즈드 연산자!!
       username = json["username"],
       email = json["email"],
-      created = DateFormat("yyymm-mm-dd").parse(json["created"]),
-      updated = DateFormat("yyymm-mm-dd").parse(json["updated"]);
+      //created = DateFormat("yyymm-mm-dd").parse(json["created"]),
+      //updated = DateFormat("yyymm-mm-dd").parse(json["updated"]);
+      created = DateTime.parse(json["created"]),
+      updated = DateTime.parse(json["updated"]);
 
 }

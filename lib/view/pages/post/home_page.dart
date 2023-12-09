@@ -15,8 +15,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // find : 있는거 찾기!!
     UserController u = Get.find();
+    // find : 있는거 찾기!!
     // put : 없으면 만들고, 있으면 찾기!!,
     /* 객체생성(create), onInit()함수 실행(initialize)
       [GETX] Instance "PostController" has been created
@@ -28,10 +28,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: _navigation(context),  // 왼쪽 메뉴 draw로 넣음
       appBar: AppBar(
-        title: Text("${u.isLogin}"),
+        title: Text("${u.isLogin}"), // --->> 상태관리, appbar에 로그인 잘되면 true로 보여줌.
         /*
         1. user_controller.dart : final RxBool isLogin = false.obs;
-        2. title: Obx(() => Text("${u.isLogin}")),
+        2. title: Obx(() => Text("${u.isLogin}")), ---> 이래야 관찰 가능한 변수가 됨.
            앱바에 로그인되면 true 출력함.
            Obx() : 컨트롤러 상태가 변경이 되면 자동으로 업데이트 됨.
         */
@@ -89,8 +89,8 @@ class HomePage extends StatelessWidget {
               Divider(),
               TextButton(
                 onPressed: (){
-                  u.logout();
-                  Get.to(() => LoginPage()); // 로그아웃
+                  u.logout();                 // --->>> 로그아웃 처리
+                  Get.to(() => LoginPage());  // 로그인 화면으로 이동
                 },
                 child: Text(
                   "로그아웃",

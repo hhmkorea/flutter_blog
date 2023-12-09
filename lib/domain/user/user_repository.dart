@@ -15,12 +15,13 @@ class UserRepository {
     // data를 Map 타입으로 await로 기다림.
     // async를 반드시 지정해야함.
     // user_provider에서 Future를 통해 null 먼저 던져주니 await로 기다려!!라고 지정하고 응답결과 가져온거 뿌림.
-    dynamic headers = response.headers;
 
-    if(headers["authorization"] == null) {
-      return "-1";
+    dynamic headers = response.headers; // --->>> 통신의 header 값
+
+    if(headers["authorization"] == null) { // 응답을 안하면 null 값
+      return "-1"; // null을 리턴 못해서 -1로
     } else {
-       String token = headers["authorization"];
+       String token = headers["authorization"]; // Bearer Token 가져오기!!
       return token;
     }
   }

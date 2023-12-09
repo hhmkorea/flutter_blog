@@ -1,6 +1,3 @@
-/*
-// 에러나서 주석처리, 그냥 UTF-8 잘됨.
-
 
 class CMRespDto {
   final int? code;
@@ -13,11 +10,9 @@ class CMRespDto {
     this.data,
   });
 
-  // 통신을 위해서 json 처럼 생긴 문자열 {"id":1} => Dart 오브젝트
-
+  // 통신을 위해서 json 처럼 생긴 문자열 {"id":1} => Dart 오브젝트, list 또는 한건의 데이타 받을때 활용
   CMRespDto.fromJson(Map<String, dynamic> json)
       : code = json["code"], // 이니셜 라이즈드 연산자
         msg = json["msg"],
         data = json["data"];
 }
-*/

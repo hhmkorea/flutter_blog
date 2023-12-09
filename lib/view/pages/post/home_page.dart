@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
       [GETX] Instance "PostController" has been initialized    */
 
     PostController p = Get.put(PostController());
-    p.findAll();
+    p.findAll(); // --->> 전체 목록 보여줌.
 
     return Scaffold(
       drawer: _navigation(context),  // 왼쪽 메뉴 draw로 넣음

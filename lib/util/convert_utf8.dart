@@ -1,4 +1,7 @@
 /*
+// convert_utf8.dart
+// 41강 한글 깨지는거 utf-8 변환부분인데 깨지지 않아서 할 필요 없음.
+
 import 'dart:convert';
 
 dynamic convertUtf8ToObject(dynamic body) {

@@ -19,11 +19,9 @@ class HomePage extends StatelessWidget {
     // find : 있는거 찾기!!
     // put : 없으면 만들고, 있으면 찾기!!,
 
-    /* 객체생성(create), onInit()함수 실행(initialize)
-      [GETX] Instance "PostController" has been created
-      [GETX] Instance "PostController" has been initialized    */
+    /* 객체생성(create), onInit()함수 실행(initialize) */
     PostController p = Get.put(PostController());
-    //p.findAll();
+    //p.findAll(); // --->>> PostController 호출시 onInit()에서 호출되도록 넣음.
 
     return Scaffold(
       drawer: _navigation(context),  // 왼쪽 메뉴 draw로 넣음
@@ -40,8 +38,9 @@ class HomePage extends StatelessWidget {
           itemCount: p.posts.length,
           itemBuilder: (context, index) {
             return ListTile(
-              onTap: () {
-                Get.to(DetailPage(index), arguments: "arguments 속성 테스트"); // 클릭하면 상세 페이지로
+              onTap: () { // --->>> 리스트 제목 클릭할때!!!
+                p.findById(p.posts[index].id!); // 변수 옆에! 붙여서 null이 절대 아닌걸 지정함.
+                Get.to(() => DetailPage(p.posts[index].id), arguments: "arguments 속성 테스트"); // 클릭하면 상세 페이지로
               },
               title: Text("${p.posts[index].title}"),
               leading: Text("${p.posts[index].id}"),

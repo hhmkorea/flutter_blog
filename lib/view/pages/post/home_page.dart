@@ -14,16 +14,16 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { // 여기에 async ~ await 넣으면 화면이 멈춤!! 쓰지 않음.
     UserController u = Get.find();
     // find : 있는거 찾기!!
     // put : 없으면 만들고, 있으면 찾기!!,
+
     /* 객체생성(create), onInit()함수 실행(initialize)
       [GETX] Instance "PostController" has been created
       [GETX] Instance "PostController" has been initialized    */
-
     PostController p = Get.put(PostController());
-    p.findAll(); // --->> 전체 목록 보여줌.
+    //p.findAll();
 
     return Scaffold(
       drawer: _navigation(context),  // 왼쪽 메뉴 draw로 넣음
@@ -36,20 +36,21 @@ class HomePage extends StatelessWidget {
            Obx() : 컨트롤러 상태가 변경이 되면 자동으로 업데이트 됨.
         */
       ),
-      body: ListView.separated( // 분리선 있는 리스트
-        itemCount: 20,
-        itemBuilder: (context, index) {
-          return ListTile(
-            onTap: () {
-              Get.to(DetailPage(index), arguments: "arguments 속성 테스트"); // 클릭하면 상세 페이지로
-            },
-            title: Text("제목"),
-            leading: Text("1"),
-          );
-        },
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
+      body: Obx(()=> ListView.separated( // 분리선 있는 리스트
+          itemCount: p.posts.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              onTap: () {
+                Get.to(DetailPage(index), arguments: "arguments 속성 테스트"); // 클릭하면 상세 페이지로
+              },
+              title: Text("${p.posts[index].title}"),
+              leading: Text("${p.posts[index].id}"),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Divider();
+          },
+        ),
       ),
     );
   }

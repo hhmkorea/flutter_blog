@@ -7,19 +7,15 @@ class PostController extends GetxController {
   final PostRepository _postRepository = PostRepository();
   final posts = <Post>[].obs;
 
-  void findAll() {
-    _postRepository.findAll();
-  }
-/*  // alt + Insert > Overrride Method > onInit()
   @override
-  void onInit() {
+  void onInit() { // 자동완성 안됨... alt+insert > override method > onInit() 선택
     super.onInit();
-    //print("안녕");
+    //print(">>>>>>>>>>>> PostController---> onInit();");
     findAll();
-  }
+  } // ---> 관찰 가능한 변수
 
   Future<void> findAll() async {
     List<Post> posts = await _postRepository.findAll();
-    this.posts.value = posts;
-  }*/
+    this.posts.value = posts; // 통신 끝나면 값이 담김.
+  }
 }

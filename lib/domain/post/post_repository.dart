@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class PostRepository {
   final PostProvider _postProvider = PostProvider();
 
-  Future<void> findAll() async {
+  Future<List<Post>> findAll() async {
     Response response = await _postProvider.findAll(); // data를 Map 타입으로 await로 기다림.
     dynamic body = response.body;
     // 41강 한글 깨지는거 utf-8 변환부분인데 깨지지 않아서 할 필요 없음. -------------
@@ -23,9 +23,14 @@ class PostRepository {
     if (cmRespDto.code == 1) {
       List<dynamic> temp = cmRespDto.data;
       List<Post> posts = temp.map((post) => Post.fromJson(post)).toList();
-      print(posts.length);
-      print(posts[0].title);
+      //print(posts.length);
+      //print(posts[0].title);
+      return posts;
     } else {
+      // return new List<Post>(); ----> 이런 식으로 빈 배열 값 넘길 수 없음.
+      // List<Post>? hello = [];
+      // return hello;
+      return <Post>[];
     }
   }
 }

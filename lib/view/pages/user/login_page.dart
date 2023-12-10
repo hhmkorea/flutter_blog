@@ -56,9 +56,8 @@ class LoginPage extends StatelessWidget {
             funPageRoute: () async {                      // funPageRoute 페이지 이동 라우터
               if(_formKey.currentState!.validate()) {     // _formKey 현재 상태는 절대 null이 아님.
                 //u.login("ssar", "1234");                // --->>> 데스트용 로그인 데이타!!!
-                String token = await u.login(_username.text.trim(), _password.text.trim()); // --->>> 로그인에서 jwt token 받음!! await 기다림!!
-                if(token != "-1") {
-                  //print("토큰 정상적으로 받음");
+                int result  = await u.login(_username.text.trim(), _password.text.trim()); // --->>> 로그인에서 jwt token 받음!! await 기다림!!
+                if(result == 1) {
                   Get.to(() => HomePage());               // --->>> 추천하는 문법으로, 메모리 부하를 줄여줌.
                 } else {
                   Get.snackbar("로그인 시도", "로그인 실패"); // 화면 상단에 안내 팝업 띄움.

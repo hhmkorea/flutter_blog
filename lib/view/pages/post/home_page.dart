@@ -38,9 +38,9 @@ class HomePage extends StatelessWidget {
           itemCount: p.posts.length,
           itemBuilder: (context, index) {
             return ListTile(
-              onTap: () { // --->>> 리스트 제목 클릭할때!!!
-                p.findById(p.posts[index].id!); // 변수 옆에! 붙여서 null이 절대 아닌걸 지정함.
-                Get.to(() => DetailPage(p.posts[index].id), arguments: "arguments 속성 테스트"); // 클릭하면 상세 페이지로
+              onTap: () async { // --->>> 리스트 제목 클릭할때!!!
+                await p.findById(p.posts[index].id!); // 변수 옆에! 붙여서 null이 절대 아닌걸 지정함, async~ await로 기다렸다가 받게 해야함. 아니면 에러 페이지 보임.
+                Get.to(() => DetailPage(p.posts[index].id), arguments: "arguments 속성 테스트"); // 클릭하면 기다렸다가 상세 페이지로
               },
               title: Text("${p.posts[index].title}"),
               leading: Text("${p.posts[index].id}"),

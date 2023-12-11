@@ -14,6 +14,17 @@ class PostController extends GetxController {
     findAll(); // ---> 전체 리스트 출력
   }
 
+  Future<void> deleteById(int id) async {
+    int result = await _postRepository.deleteById(id);
+
+    if(result == 1) {
+      print("서버 쪽 삭제 성공!!!");
+      List<Post> result = posts.value.where((post) => post.id != id).toList(); // 3장 15강 반복문
+      print(result.length);
+      posts.value = result;
+    }
+  }
+
   Future<void> findAll() async {
     List<Post> posts = await _postRepository.findAll();
     this.posts.value = posts; // 통신 끝나면 값이 담김.

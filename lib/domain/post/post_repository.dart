@@ -7,13 +7,17 @@ import 'package:get/get.dart';
 class PostRepository {
   final PostProvider _postProvider = PostProvider();
 
+  Future<int> deleteById(int id) async {
+    Response response = await _postProvider.deleteById(id);
+    dynamic body = response.body;
+    CMRespDto cmRespDto = CMRespDto.fromJson(body);
+
+    return cmRespDto.code ?? -1;
+  }
+
   Future<Post> findById(int id) async {
     Response response = await _postProvider.findById(id);
     dynamic body = response.body;
-    // 41강 한글 깨지는거 utf-8 변환부분인데 깨지지 않아서 할 필요 없음. -------------
-    // dynamic convertBody = convertUtf8ToObject(body);
-    // CMRespDto cmRespDto = CMRespDto.fromJson(convertBody);
-    // -----------------------------------------------------------------------
     CMRespDto cmRespDto = CMRespDto.fromJson(body);
 
     if (cmRespDto.code == 1) {

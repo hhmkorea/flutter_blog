@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 class LoginPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final UserController u = Get.put(UserController()); // 상태관리 ------>>> 로그인 하면서 jwt token 파일 받아둠.
-
   final _username = TextEditingController(); // ?를 넣으면 null 도 받을 수 있는 타입
   final _password = TextEditingController();
 

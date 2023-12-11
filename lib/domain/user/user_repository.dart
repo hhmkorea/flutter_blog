@@ -11,9 +11,7 @@ class UserRepository {
 
   Future<User> login(String username, String password) async {
     LoginReqDto loginReqDto = LoginReqDto(username, password); // loginReqDto : dart request object
-
     print(loginReqDto.toJson()); // 로그인한 유저 id, pwd 응답 결과값 로그로 뿌려줌.
-
     Response response = await _userProvider.login(loginReqDto.toJson());
     // data를 Map 타입으로 await로 기다림.
     // async를 반드시 지정해야함.

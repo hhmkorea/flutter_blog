@@ -9,7 +9,7 @@ import 'package:flutter_blog/view/pages/user/user_info.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) { // 여기에 async ~ await 넣으면 화면이 멈춤!! 쓰지 않음.
@@ -34,22 +34,28 @@ class HomePage extends StatelessWidget {
            Obx() : 컨트롤러 상태가 변경이 되면 자동으로 업데이트 됨.
         */
       ),
-      body: Obx(()=> ListView.separated( // 분리선 있는 리스트 ---> Obx가 상태관리함!!!
-          itemCount: p.posts.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              onTap: () async { // --->>> 리스트 제목 클릭할때!!!
-                await p.findById(p.posts[index].id!); // 변수 옆에! 붙여서 null이 절대 아닌걸 지정함, async~ await로 기다렸다가 받게 해야함. 아니면 에러 페이지 보임.
-                Get.to(() => DetailPage(p.posts[index].id), arguments: "arguments 속성 테스트"); // 클릭하면 기다렸다가 상세 페이지로
-              },
-              title: Text("${p.posts[index].title}"),
-              leading: Text("${p.posts[index].id}"),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return Divider();
-          },
-        ),
+      body: Obx(()=> RefreshIndicator( // 서버 재시작 후 갱신된 데이터 마우스 스크롤 하면 갱신되어 보임.
+        key: refreshKey,
+        onRefresh: () async {
+          await p.findAll();
+        },
+        child: ListView.separated( // 분리선 있는 리스트 ---> Obx가 상태관리함!!!
+            itemCount: p.posts.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                onTap: () async { // --->>> 리스트 제목 클릭할때!!!
+                  await p.findById(p.posts[index].id!); // 변수 옆에! 붙여서 null이 절대 아닌걸 지정함, async~ await로 기다렸다가 받게 해야함. 아니면 에러 페이지 보임.
+                  Get.to(() => DetailPage(p.posts[index].id), arguments: "arguments 속성 테스트"); // 클릭하면 기다렸다가 상세 페이지로
+                },
+                title: Text("${p.posts[index].title}"),
+                leading: Text("${p.posts[index].id}"),
+              );
+            },
+            separatorBuilder: (context, index) {
+              return Divider();
+            },
+          ),
+      ),
       ),
     );
   }

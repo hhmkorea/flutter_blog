@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   var refreshKey = GlobalKey<RefreshIndicatorState>();
+  var scaffodkey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) { // 여기에 async ~ await 넣으면 화면이 멈춤!! 쓰지 않음.
@@ -24,6 +25,16 @@ class HomePage extends StatelessWidget {
     //p.findAll(); // --->>> PostController 호출시 onInit()에서 호출되도록 넣음.
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton( // <> 버튼으로 네이게이션 제어
+        onPressed: (){
+          if(scaffodkey.currentState!.isDrawerOpen) {
+            scaffodkey.currentState!.openEndDrawer();
+          } else {
+            scaffodkey.currentState!.openDrawer();
+          }
+        },
+        child: Icon(Icons.code),
+      ),
       drawer: _navigation(context),  // 왼쪽 메뉴 draw로 넣음
       appBar: AppBar(
         title: Text("${u.isLogin}"), // --->> 상태관리, appbar에 로그인 잘되면 true로 보여줌.
@@ -85,6 +96,8 @@ class HomePage extends StatelessWidget {
               Divider(), // 분리선 넣음
               TextButton(
                 onPressed: (){
+                  Navigator.pop(context); // --->>> stack으로 제일 위에 쌓인 화면 날림.
+                  //scaffodkey.currentState!.openEndDrawer(); // 이렇게 해도 되는데 에러남.
                   Get.to(() => UserInfo()); // 회원정보 보기
                 },
                 child: Text(

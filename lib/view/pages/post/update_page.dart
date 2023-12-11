@@ -4,6 +4,7 @@ import 'package:flutter_blog/util/validator_util.dart';
 import 'package:flutter_blog/view/components/custom_elevated_button.dart';
 import 'package:flutter_blog/view/components/custom_text_form_field.dart';
 import 'package:flutter_blog/view/components/custom_textarea.dart';
+import 'package:flutter_blog/view/pages/post/detail_page.dart';
 import 'package:get/get.dart';
 
 class UpdatePage extends StatelessWidget {
@@ -41,7 +42,6 @@ class UpdatePage extends StatelessWidget {
                 funPageRoute: () async {
                   if(_formKey.currentState!.validate()) {
                     await p.updateById(p.post.value.id ?? 0, _title.text, _content.text);
-                    // 같은 page가 있으면 이동할 때 덮어씌우기 이게 최고!!
                     Get.back(); // 상태관리 GetX 라이브러리 - Obs 로 데이터 갱신시킴.
                   }
                 },

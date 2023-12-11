@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/controller/post_controller.dart';
 import 'package:flutter_blog/controller/user_controller.dart';
-import 'package:flutter_blog/domain/post/post.dart';
 import 'package:flutter_blog/size.dart';
-import 'package:flutter_blog/util/jwt.dart';
 import 'package:flutter_blog/view/pages/post/detail_page.dart';
 import 'package:flutter_blog/view/pages/post/write_page.dart';
 import 'package:flutter_blog/view/pages/user/login_page.dart';
@@ -20,7 +18,9 @@ class HomePage extends StatelessWidget {
     // put : 없으면 만들고, 있으면 찾기!!,
 
     /* 객체생성(create), onInit()함수 실행(initialize) */
-    PostController p = Get.put(PostController());
+    PostController p = Get.put(PostController()); // put : 개체 하나씩만 만듬.
+    // Get.create(() => null) // controller별 객체를 생성해서 만들경우 사용.
+
     //p.findAll(); // --->>> PostController 호출시 onInit()에서 호출되도록 넣음.
 
     return Scaffold(
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
            Obx() : 컨트롤러 상태가 변경이 되면 자동으로 업데이트 됨.
         */
       ),
-      body: Obx(()=> ListView.separated( // 분리선 있는 리스트
+      body: Obx(()=> ListView.separated( // 분리선 있는 리스트 ---> Obx가 상태관리함!!!
           itemCount: p.posts.length,
           itemBuilder: (context, index) {
             return ListTile(

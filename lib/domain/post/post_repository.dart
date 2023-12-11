@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class PostRepository {
   final PostProvider _postProvider = PostProvider();
 
-  Future<void> updateById(int id, String title, String content) async {
+  Future<Post> updateById(int id, String title, String content) async {
     UpdateReqDto updateReqDto = UpdateReqDto(title, content);
     Response response = await _postProvider.updateById(id, updateReqDto.toJson());
     dynamic body = response.body;
@@ -16,8 +16,11 @@ class PostRepository {
 
     if(cmRespDto.code == 1) {
       print("수정 성공");
+      Post post = Post.fromJson(cmRespDto.data); // 수정된 내용으로 변경.
+      return post;
     } else {
       print("수정 실패");
+      return Post();
     }
   }
 

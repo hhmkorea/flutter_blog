@@ -1,6 +1,7 @@
 import 'package:validators/validators.dart';
 
 Function validateUsername() {
+  // GetUtils.XXX // validation 체크 기능 있음.
   return (String? value) {
     if (value!.isEmpty) {
       return "공백이 들어갈 수 없습니다.";

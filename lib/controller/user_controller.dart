@@ -12,6 +12,7 @@ class UserController extends GetxController {
   void logout(){ // 로그아웃
     this.isLogin.value = false;
     jwtToken = null;
+    // Get.Storage() // 로그인한 상태값 담아둠. 토큰이 유효한 범위까지. 1시간.
   }
 
   Future<int> login(String username, String password) async {

@@ -3,6 +3,7 @@ import 'package:flutter_blog/domain/post/post.dart';
 import 'package:flutter_blog/domain/post/post_repository.dart';
 import 'package:get/get.dart';
 
+// 3. 호출
 class PostController extends GetxController {
   final PostRepository _postRepository = PostRepository();
   final posts = <Post>[].obs; // obs가 상태관리함.
@@ -12,6 +13,13 @@ class PostController extends GetxController {
   void onInit() { // 자동완성 안됨... alt+insert > override method > onInit() 선택
     super.onInit();
     findAll();
+  }
+
+  Future<void> save(String title, String content) async{
+    Post post = await _postRepository.save(title, content);
+    if(post.id != null) {
+      this.posts.add(post);
+    }
   }
 
   Future<void> updateById(int id, String title, String content) async {

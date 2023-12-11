@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 const host = "http://192.168.101.69:8080";
 
-// 통신
+// 1. 통신
 class PostProvider extends GetConnect {
   // Promise (데이터 약속)
   Future<Response> findAll() =>
@@ -17,5 +17,8 @@ class PostProvider extends GetConnect {
 
   Future<Response> updateById(int id, Map data) =>
       put( "$host/post/$id", data, headers: {"Authorization" : jwtToken ?? ""} );
+
+  Future<Response> save(Map data) =>
+      post( "$host/post", data, headers: {"Authorization" : jwtToken ?? ""} );
 
 }

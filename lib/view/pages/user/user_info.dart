@@ -14,10 +14,11 @@ class UserInfo extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("회원 번호 : ${u.principal.value.id}"),
-            Text("회원 이름 : ${u.principal.value.username}"),
-            Text("회원 이메일 : ${u.principal.value.email}"),
-            Text("회원 가입날짜 : ${u.principal.value.created}"),
+            Text("회원 번호 : ${u.user.value.id}"),
+            Text("회원 이름 : ${u.user.value.username}"),
+            //Text("회원 암호 : ${u.user.value. password}"), // null로 보임.
+            Text("회원 이메일 : ${u.user.value.email}"),
+            Text("회원 가입날짜 : ${u.user.value.created}"),
           ],
         ),
       ),

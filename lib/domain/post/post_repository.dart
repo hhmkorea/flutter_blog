@@ -10,6 +10,8 @@ class PostRepository {
 
   Future<Post> save(String title, String content) async {
     SaveOrUpdateReqDto saveReqDto = SaveOrUpdateReqDto(title, content);
+    //print("title ---------------------------" + saveReqDto.title.toString());
+    //print("content---------------------------" + saveReqDto.content.toString());
     Response response = await _postProvider.save(saveReqDto.toJson());
     dynamic body = response.body;
     CMRespDto cmRespDto = CMRespDto.fromJson(body);

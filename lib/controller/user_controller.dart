@@ -4,13 +4,14 @@ import 'package:flutter_blog/util/jwt.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
-
   final UserRepository _userRepository = UserRepository();
   final RxBool isLogin = false.obs; // 상태관리 : UI가 관찰 가능한 변수 => 변경 => UI가 자동 업데이트
-  final principal = User().obs;
+  final users = <User>[].obs; // obs가 상태관리함.
+  final user = User().obs;
 
   void logout(){ // 로그아웃
     this.isLogin.value = false;
+    this.user.value.isBlank;
     jwtToken = null;
     // Get.Storage() // 로그인한 상태값 담아둠. 토큰이 유효한 범위까지. 1시간.
   }
@@ -21,10 +22,18 @@ class UserController extends GetxController {
 
     if(principal.id != null) {
       this.isLogin.value = true;
-      this.principal.value = principal;
+      this.user.value = principal;
       return 1;
     } else {
       return -1;
     }
   }
+
+  Future<void> save(String username, String password, String email) async{
+    User user = await _userRepository.save(username, password, email);
+    if(user.username != null) {
+      this.users.add(user);
+    }
+  }
+
 }

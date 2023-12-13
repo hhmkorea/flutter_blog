@@ -1,4 +1,5 @@
 import 'package:flutter_blog/controller/dto/CMRespDto.dart';
+import 'package:flutter_blog/controller/dto/JoinReqDto.dart';
 import 'package:flutter_blog/controller/dto/LoginReqDto.dart';
 import 'package:flutter_blog/domain/user/user.dart';
 import 'package:flutter_blog/domain/user/user_provider.dart';
@@ -43,4 +44,25 @@ class UserRepository {
       return token;
     }*/
   }
+
+  Future<User> save(String username, String password, String email) async {
+    JoinReqDto joinReqDto = JoinReqDto(username, password, email);
+    print("username ---------------------------" + joinReqDto.username.toString());
+    print("password---------------------------" + joinReqDto.password.toString());
+    print("email---------------------------" + joinReqDto.email.toString());
+    Response response = await _userProvider.save(joinReqDto.toJson());
+
+    dynamic body = response.body;
+    CMRespDto cmRespDto = CMRespDto.fromJson(body);
+
+    if (cmRespDto.code == 1) {
+      print("회원가입 성공");
+      User user = User.fromJson(cmRespDto.data); // 등록한 내용 가져옴.
+      return user;
+    } else {
+      print("회원가입 실패");
+      return User();
+    }
+  }
+
 }

@@ -16,7 +16,7 @@ class DetailPage extends StatelessWidget {
     UserController u = Get.find();
     PostController p = Get.find();
 
-    print("로그인 유저아이디 : ${u.principal.value.id}");
+    print("로그인 유저아이디 : ${u.user.value.id}");
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +33,7 @@ class DetailPage extends StatelessWidget {
                   ),
               ),
               Divider(),
-              u.principal.value.id == p.post.value.user!.id
+              u.user.value.id == p.post.value.user!.id
                   ? Row( // 삭제, 수정 버튼 가로 영역으로 보여줌
                       children: [
                         ElevatedButton(
